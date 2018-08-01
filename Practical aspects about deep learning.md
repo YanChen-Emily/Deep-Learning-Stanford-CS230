@@ -44,7 +44,12 @@ In modern deep learning era, we sometimes/usually would have 1 million samples i
 
 When you have a 1-million example, you may just split the data as 98/1/1.
 
++ Mismatched train/test distribution:
+Training set: Cat pictures from webpages; Dev/test sets: Cat pictures from users using your app.
 
+**Rule of Thumb: Make sure dev and test set come from the same distribution.**
+￼
+ 
 
 
 
