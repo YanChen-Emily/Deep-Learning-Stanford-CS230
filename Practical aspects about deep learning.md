@@ -26,13 +26,11 @@ If your model overfits, use other techniques to reduce overfitting.
 + With the inverted dropout technique, at test time, You do not apply dropout (do not randomly eliminate units) and do not keep the 1/keep_prob factor in the calculations used in training.
 
 + Increasing the parameter keep_prob from (say) 0.5 to 0.6 will likely cause the following: (Check the two that apply)
->Reducing the regularization effect
+> Reducing the regularization effect
 Causing the neural network to end up with a lower training set error
 
 + Which of these techniques are useful for reducing variance (reducing overfitting)? 
-Dropout
-L2 regularization
-Data augmentation
+> Dropout, L2 regularization, Data augmentation
 
 + Why do we normalize the inputs x?
-It makes the cost function faster to optimize.
+> It makes the cost function faster to optimize.
