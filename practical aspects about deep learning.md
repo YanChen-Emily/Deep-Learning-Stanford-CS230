@@ -1,4 +1,4 @@
-# Practical Aspects about deep learning
+# Practical aspects about deep learning
 
 + Choice of learning rate
 
@@ -48,6 +48,8 @@ When you have a 1-million example, you may just split the data as 98/1/1.
 Training set: Cat pictures from webpages; Dev/test sets: Cat pictures from users using your app.
 
 **Rule of Thumb: Make sure dev and test set come from the same distribution.**
+
+
 ￼
  
 
