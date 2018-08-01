@@ -1,6 +1,7 @@
 # Stanford CS 230 Deep learning course collection 
 
 + Choice of learning rate
+
 **Reminder:** In order for Gradient Descent to work you must choose the learning rate wisely. The learning rate $\alpha$ determines how rapidly we update the parameters. If the learning rate is too large we may "overshoot" the optimal value. Similarly, if it is too small we will need too many iterations to converge to the best values. That's why it is crucial to use a well-tuned learning rate.
 
 > Different learning rates give different costs and thus different predictions results.
