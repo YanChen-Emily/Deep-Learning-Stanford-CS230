@@ -7,3 +7,7 @@ Having stronger gradients: since data is centered around 0, the derivatives are 
 The range of the tanh function is [-1,1] and that of the sigmoid function is [0,1].
 Avoiding bias in the gradients. This is explained very well in the paper, and it is worth reading it to understand these issues.
 
++ You are building a binary classifier for recognizing cucumbers (y=1) vs. watermelons (y=0). Which one of these activation functions would you recommend using for the output layer? (Answer: Sigmoid)
+> Note: The output value from a sigmoid function can be easily understood as a probability.
+Sigmoid outputs a value between 0 and 1 which makes it a very good choice for binary classification. You can classify as 0 if the output is less than 0.5 and classify as 1 if the output is more than 0.5. It can be done with tanh as well but it is less convenient as the output is between -1 and 1.
+
