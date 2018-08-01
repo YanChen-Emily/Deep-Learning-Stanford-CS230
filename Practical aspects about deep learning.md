@@ -39,5 +39,43 @@ Causing the neural network to end up with a lower training set error
 
 You keep training your model on the training set, and use the development set or the holdout cross-validation set to see which model performs best on your dev set; and after having done this long enough, when you have a final model you want to evaluate, you can evaluate your final model on the test set to get an unbiased estimator of how your algorithm is doing.
 
+In machine learning, you usually split your data like 70/30 or 60/20/20 with 1000, 10000 samples in total. 
+In modern deep learning era, we sometimes/usually would have 1 million samples in total. And remember that development set is just used to evaluate which algorithm performs the best. So the dev set just needs to be big enough for you to test, say among the two algorithms or the ten algorithms which one is doing better. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
