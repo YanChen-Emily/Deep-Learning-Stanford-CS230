@@ -36,6 +36,7 @@ Causing the neural network to end up with a lower training set error
 > It makes the cost function faster to optimize.
 
 + Train/dev/test sets 
+
 You keep training your model on the training set, and use the development set or the holdout cross-validation set to see which model performs best on your dev set; and after having done this long enough, when you have a final model you want to evaluate, you can evaluate your final model on the test set to get an unbiased estimator of how your algorithm is doing.
 
 
