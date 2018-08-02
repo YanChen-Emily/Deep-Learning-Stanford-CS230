@@ -74,3 +74,8 @@ Training set: Cat pictures from webpages; Dev/test sets: Cat pictures from users
 
 L2-regularization relies on the assumption that a model with small weights is simpler than a model with large weights. Thus, by penalizing the square values of the weights in the cost function you drive all the weights to smaller values. It becomes too costly for the cost to have large weights! This leads to a smoother model in which the output changes more slowly as the input changes. 
 
+**What you should remember about dropout:**
+- Dropout is a regularization technique.
+- You only use dropout during training. Don't use dropout (randomly eliminate nodes) during test time.
+- Apply dropout both during forward and backward propagation.
+- During training time, divide each dropout layer by keep_prob to keep the same expected value for the activations. 
