@@ -79,3 +79,7 @@ L2-regularization relies on the assumption that a model with small weights is si
 - You only use dropout during training. Don't use dropout (randomly eliminate nodes) during test time.
 - Apply dropout both during forward and backward propagation.
 - During training time, divide each dropout layer by keep_prob to keep the same expected value for the activations. 
+
+**Gradient Checking:**
+$$ difference = \frac {\mid\mid grad - gradapprox \mid\mid_2}{\mid\mid grad \mid\mid_2 + \mid\mid gradapprox \mid\mid_2} \tag{2}$$
+If this difference is small (say less than  $10^{-7}$ ), you can be quite confident that you have computed your gradient correctly. Otherwise, there may be a mistake in the gradient computation.
