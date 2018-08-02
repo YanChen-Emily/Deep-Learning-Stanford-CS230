@@ -70,11 +70,11 @@ Training set: Cat pictures from webpages; Dev/test sets: Cat pictures from users
 - The value of $\lambda$ is a hyperparameter that you can tune using a dev set.
 - L2 regularization makes your decision boundary smoother. If $\lambda$ is too large, it is also possible to "oversmooth", resulting in a model with high bias.
 
-**What is L2-regularization actually doing?**:
+What is L2-regularization actually doing?
 
 L2-regularization relies on the assumption that a model with small weights is simpler than a model with large weights. Thus, by penalizing the square values of the weights in the cost function you drive all the weights to smaller values. It becomes too costly for the cost to have large weights! This leads to a smoother model in which the output changes more slowly as the input changes. 
 
-**What you should remember about dropout:**
+**Dropout:**
 - Dropout is a regularization technique.
 - You only use dropout during training. Don't use dropout (randomly eliminate nodes) during test time.
 - Apply dropout both during forward and backward propagation.
