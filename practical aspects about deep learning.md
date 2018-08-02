@@ -93,3 +93,10 @@ If this difference is small (say less than  $10^{-7}$ ), you can be quite confid
 ### SGD (stochastic gradient descent)
 
 Stochastic Gradient Descent (SGD) is equivalent to mini-batch gradient descent where each mini-batch has just 1 example. The update rule that you have just implemented does not change. What changes is that you would be computing gradients on just one training example at a time, rather than on the whole training set. 
+
+### Mini-Batch Gradient descent:
+- Why is the best mini-batch size usually not 1 and not m, but instead something in-between?-
+  - If the mini-batch size is 1, you lose the benefits of vectorization across examples in the mini-batch.
+  - If the mini-batch size is m, you end up with batch gradient descent, which has to process the whole training set before making progress.
+
+
