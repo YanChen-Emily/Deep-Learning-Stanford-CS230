@@ -101,5 +101,6 @@ Stochastic Gradient Descent (SGD) is equivalent to mini-batch gradient descent w
   
 ### Regularization
 
-- You should not be using smaller networks because you are afraid of overtting. Instead, you should use as big of a neural network as your computational budget allows, and use other regularization techniques to control overtting.
+- You should not be using smaller networks because you are afraid of overtting. Instead, you should use as big of a neural network as your computational budget allows, and use other regularization techniques to control overtting. 
+- Because bigger NNs have a greater representation power. And overfitting problems can be well addressed by proper regularization methods.
 
