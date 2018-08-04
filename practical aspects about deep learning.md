@@ -108,6 +108,9 @@ Stochastic Gradient Descent (SGD) is equivalent to mini-batch gradient descent w
 - You should not be using smaller networks because you are afraid of overtting. Instead, you should use as big of a neural network as your computational budget allows, and use other regularization techniques to control overtting. 
 - Because bigger NNs have a greater representation power. And overfitting problems can be well addressed by proper regularization methods.
 
+In practice: It is most common to use a single, global L2 regularization strength that is cross- validated. It is also common to combine this with dropout applied after all layers. The value of
+is a reasonable default, but this can be tuned on validation data.
+
 ### Data Preprocessing
 Normalization refers to normalizing the data dimensions so that they are of approximately the same scale. There are two common ways of achieving this normalization. One is to divide each dimension by its standard deviation, once it has been zero-centered: ``` (X /= np.std(X, axis = 0))```. 
 
