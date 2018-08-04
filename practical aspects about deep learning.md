@@ -105,7 +105,7 @@ Stochastic Gradient Descent (SGD) is equivalent to mini-batch gradient descent w
 - Because bigger NNs have a greater representation power. And overfitting problems can be well addressed by proper regularization methods.
 
 ### Data Preprocessing
-Normalization refers to normalizing the data dimensions so that they are of approximately the same scale. There are two common ways of achieving this normalization. One is to divide each dimension by its standard deviation, once it has been zero-centered: (X /= np.std(X, axis = 0)). 
+Normalization refers to normalizing the data dimensions so that they are of approximately the same scale. There are two common ways of achieving this normalization. One is to divide each dimension by its standard deviation, once it has been zero-centered: ```python (X /= np.std(X, axis = 0))```. 
 
 Another form of this preprocessing normalizes each dimension so that the min and max along the dimension is -1 and 1 respectively. **It only makes sense to apply this preprocessing if you have a reason to believe that different input features have different scales (or units), but they should be of approximately equal importance to the learning algorithm.**
 
