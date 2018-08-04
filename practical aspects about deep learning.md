@@ -104,3 +104,18 @@ Stochastic Gradient Descent (SGD) is equivalent to mini-batch gradient descent w
 - You should not be using smaller networks because you are afraid of overtting. Instead, you should use as big of a neural network as your computational budget allows, and use other regularization techniques to control overtting. 
 - Because bigger NNs have a greater representation power. And overfitting problems can be well addressed by proper regularization methods.
 
+### Data Preprocessing
+Normalization refers to normalizing the data dimensions so that they are of approximately the same scale. There are two common ways of achieving this normalization. One is to divide each dimension by its standard deviation, once it has been zero-centered: (X /= np.std(X, axis = 0)). 
+
+Another form of this preprocessing normalizes each dimension so that the min and max along the dimension is -1 and 1 respectively. **It only makes sense to apply this preprocessing if you have a reason to believe that different input features have different scales (or units), but they should be of approximately equal importance to the learning algorithm.**
+
+In case of images, the relative scales of pixels are already approximately equal (and in range from 0 to 255), so it is not strictly necessary to perform this additional preprocessing step.
+
+#### PCA and Whitening
+
+```python
+# Assume input data matrix X of size [N x D]
+X -= np.mean(X, axis = 0) # zero-center the data (important)
+cov = np.dot(X.T, X) / X.shape[0] # get the data covariance matrix
+```
+
