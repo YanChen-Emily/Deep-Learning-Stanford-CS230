@@ -119,3 +119,16 @@ X -= np.mean(X, axis = 0) # zero-center the data (important)
 cov = np.dot(X.T, X) / X.shape[0] # get the data covariance matrix
 ```
 
+The (i,j) element of the data covariance matrix contains the covariance between i-th and j-th dimension of the data.
+We can compute the SVD factorization of the data covariance matrix:
+
+```python
+U,S,V = np.linalg.svd(cov)
+```
+
+where the columns of ```U``` are the eigenvectors and ```S``` is a 1-D array of the singular values. To decorrelate the data, we project the original (but zero-centered) data into the eigenbasis:
+
+```Xrot = np.dot(X, U) # decorrelate the data```
+
+
+
