@@ -1,5 +1,7 @@
 # Practical aspects about deep learning
 
++ reference: Stanford CS 230, CS 231N
+
 + Choice of learning rate
 
 > **Reminder:** In order for Gradient Descent to work you must choose the learning rate wisely. The learning rate $\alpha$ determines how rapidly we update the parameters. If the learning rate is too large we may "overshoot" the optimal value. Similarly, if it is too small we will need too many iterations to converge to the best values. That's why it is crucial to use a well-tuned learning rate.
@@ -63,6 +65,8 @@ Training set: Cat pictures from webpages; Dev/test sets: Cat pictures from users
 - Random initialization is used to break symmetry and make sure different hidden units can learn different things
 - Don't intialize to values that are too large
 - He initialization works well for networks with ReLU activations. 
+
+In practice, the current recommendation is to use ReLU units and use the ```w = np.random.randn(n) * sqrt(2.0/n)```, as discussed in He et al..
 
 ### L2-regularization
 
@@ -128,7 +132,38 @@ U,S,V = np.linalg.svd(cov)
 
 where the columns of ```U``` are the eigenvectors and ```S``` is a 1-D array of the singular values. To decorrelate the data, we project the original (but zero-centered) data into the eigenbasis:
 
-```Xrot = np.dot(X, U) # decorrelate the data```
+```python
+Xrot = np.dot(X, U) # decorrelate the data
+```
+
+Notice that the columns of U are a set of orthonormal vectors (norm of 1, and orthogonal to each other), so they can be regarded as basis vectors. The projection therefore corresponds to a rotation of the data in X so that the new axes are the eigenvectors. If we were to compute the covariance matrix of Xrot, we would see that it is now diagonal.
+
+A nice property of ```np.linalg.svd``` is that in its returned value U, the eigenvector columns are sorted by their eigenvalues. We can use this to reduce the dimensionality of the data by only using the top few eigenvectors, and discarding the dimensions along which the data has no variance.
+
+```python
+Xrot_reduced = np.dot(X, U[:,:100]) # Xrot_reduced becomes [N x 100]
+```
+
+It is very often the case that you can get very good performance by training linear classifiers or neural networks on the PCA-reduced datasets, obtaining savings in both space and time.
+
+The last transformation you may see in practice is whitening. The whitening operation takes the data in the eigenbasis and divides every dimension by the eigenvalue to normalize the scale. The geometric interpretation of this transformation is that if the input data is a multivariable gaussian, then the whitened data will be a gaussian with zero mean and identity covariance matrix. This step would take the form:
+
+```python
+# whiten the data:
+# divide by the eigenvalues (which are square roots of the singular values)
+Xwhite = Xrot / np.sqrt(S + 1e-5)
+```
+Warning: Exaggerating noise. Note that we’re adding 1e-5 (or a small constant) to prevent division by zero. One weakness of this transformation is that it can greatly exaggerate the noise in the data, since it stretches all dimensions (including the irrelevant dimensions of tiny variance that are mostly noise) to be of equal size in the input. This can in practice be mitigated by stronger smoothing (i.e. increasing 1e-5 to be a larger number).
+
+**Summary:**
+Data Preprocessing: normalization, PCA, whitening
+
+In practice. We mention PCA/Whitening in these notes for completeness, but these transformations are not used with Convolutional Networks. However, it is very important to zero-center the data, and it is common to see normalization of every pixel as well.
+
+**Common pitfall.**
+
+An important point to make about the preprocessing is that any preprocessing statistics (e.g. the data mean) must only be computed on the training data, and then applied to the validation / test data. E.g. computing the mean and subtracting it from every image across the entire dataset and then splitting the data into train/val/test splits would be a mistake. Instead, the mean must be computed only over the training data and then subtracted equally from all splits (train/val/test).
+
 
 
 
