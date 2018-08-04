@@ -111,6 +111,10 @@ Stochastic Gradient Descent (SGD) is equivalent to mini-batch gradient descent w
 In practice: It is most common to use a single, global L2 regularization strength that is cross- validated. It is also common to combine this with dropout applied after all layers. The value of
 is a reasonable default, but this can be tuned on validation data.
 
+If you’re certain that classification is not appropriate, use the L2 but be careful: For example, the L2 is more fragile and applying dropout in the network (especially in the layer right before the L2 loss) is not a great idea.
+
+> When faced with a regression task, first consider if it is absolutely necessary. Instead, have a strong preference to discretizing your outputs to bins and perform classification over them whenever possible.
+
 ### Data Preprocessing
 Normalization refers to normalizing the data dimensions so that they are of approximately the same scale. There are two common ways of achieving this normalization. One is to divide each dimension by its standard deviation, once it has been zero-centered: ``` (X /= np.std(X, axis = 0))```. 
 
