@@ -94,6 +94,8 @@ If this difference is small (say less than  $10^{-7}$ ), you can be quite confid
 
 - Gradient checking is slow, so we don't run it in every iteration of training. You would usually run it only to make sure your code is correct, then turn it off and use backprop for the actual learning process. 
 
+The reason why we use the centered formula for gradient checking is that, if we use Taylor expansion of f(x+h)  and f(x−h) and verify that the first formula has an error on order of O(h), while the second formula only has error terms on order of O(h^2) (i.e. it is a second order approximation).
+
 ### SGD (stochastic gradient descent)
 
 Stochastic Gradient Descent (SGD) is equivalent to mini-batch gradient descent where each mini-batch has just 1 example. The update rule that you have just implemented does not change. What changes is that you would be computing gradients on just one training example at a time, rather than on the whole training set. 
