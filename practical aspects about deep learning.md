@@ -96,6 +96,17 @@ If this difference is small (say less than  $10^{-7}$ ), you can be quite confid
 
 **The reason why we use the centered formula for gradient checking is that, if we use Taylor expansion of f(x+h)  and f(x−h) and verify that the first formula has an error on order of O(h), while the second formula only has error terms on order of O(h^2) (i.e. it is a second order approximation).**
 
+Note that it is possible to know if a kink was crossed in the evaluation of the loss. This can be done by keeping track of the identities of all “winners” in a function of form max(x,y); That is, was x or y higher during the forward pass. If the identity of at least one winner changes when evaluating f(x+h) and then f(x−h), then a kink was crossed and the numerical gradient will not be exact.
+
+One fix to the above problem of kinks is to use fewer datapoints, since loss functions that contain kinks (e.g. due to use of ReLUs or margin losses etc.) will have fewer kinks with fewer datapoints, so it is less likely for you to cross one when you perform the finite different approximation. 
+
+Moreover, if your gradcheck for only ~2 or 3 datapoints then you would almost certainly gradcheck for an entire batch. Using very few datapoints also makes your gradient check faster and more efficient.
+
+Be careful with the step size h. It is not necessarily the case that smaller is better, because when h is much smaller, you may start running into numerical precision problems. Sometimes when the gradient doesn’t check, it is possible that you change h to be 1e-4 or 1e-6 and suddenly the gradient will be correct. 
+
+Gradcheck during a “characteristic” mode of operation. To be safe it is best to use a short burn-in time during which the network is allowed to learn and perform the gradient check after the loss starts to go down. The danger of performing it at the first iteration is that this could introduce pathological edge cases and mask an incorrect implementation of the gradient.
+
+
 ### SGD (stochastic gradient descent)
 
 Stochastic Gradient Descent (SGD) is equivalent to mini-batch gradient descent where each mini-batch has just 1 example. The update rule that you have just implemented does not change. What changes is that you would be computing gradients on just one training example at a time, rather than on the whole training set. 
@@ -177,5 +188,21 @@ An important point to make about the preprocessing is that any preprocessing sta
 
 In practice networks that use Batch Normalization are significantly more robust to bad initialization. Additionally, batch normalization can be interpreted as doing preprocessing at every layer of the network, but integrated into the network itself in a differentiable manner.
 
+### Babysitting the learning process 
+
+The x-axis of the plots below are always in units of epochs, which measure how many times every example has been seen during training in expectation (e.g. one epoch means that every example has been seen once). It is preferable to track epochs rather than iterations since the number of iterations depends on the arbitrary setting of batch size.
+
+### Loss function and Train/Val accuracy 
+
+The first quantity that is useful to track during training is the loss. The amount of “wiggle” in the loss is related to the batch size. When the batch size is 1, the wiggle will be relatively high. When the batch size is the full dataset, the wiggle will be minimal because every gradient update should be improving the loss function monotonically (unless the learning rate is set too high).
+
+The second important quantity to track while training a classifier is the validation/training accuracy. This plot can give you valuable insights into the amount of overfitting in your model.
+
+### Hyperparameter optimization 
+
+The most common hyperparameters in context of Neural Networks include:
+- the initial learning rate
+- learning rate decay schedule (such as the decay constant) 
+- regularization strength (L2 penalty, dropout strength)
 
 
